@@ -33,15 +33,21 @@ public class RecebimentosService {
         }).collect(Collectors.toList());
     }
 
-//    public List<RecebimentosModel> findyRecebimentos (String status){
-//        return recebimentosRepository.findByStatus(status);
-//    }
+    public List<RecebimentoResponse> findyRecebimentos (String status){
+        List<RecebimentoEntity> recebimentoEntityList = adapter.listaPorStatus(status);
+        return recebimentoEntityList.stream().map(entity -> {
+            return RecebimentoResponse.builder()
+                    .codigo(entity.getCodigo()).status(entity.getStatus()).diferencaValor(entity.getDiferencaValor())
+                    .valorAReceber(entity.getValorAReceber()).valorRecebido(entity.getValorRecebido()).build();
+        }).collect(Collectors.toList());
+    }
 
     public RecebimentosModel cadastrarRecebimento(RecebimentosModel recebimentosModel) {
         BigDecimal resultado = RecebimentosFactory.getCalculoRecebimento(recebimentosModel.getStatus()).calcularDesconto(recebimentosModel.getValorAReceber());
         BigDecimal resultadoFinal = recebimentosModel.getValorAReceber().subtract(resultado);
         recebimentosModel.setDiferencaValor(resultado);
         recebimentosModel.setValorRecebido(resultadoFinal);
-        return cadastrarRecebimento(recebimentosModel);
+        adapter.salvarRecebimento(recebimentosModel);
+        return recebimentosModel;
     }
 }

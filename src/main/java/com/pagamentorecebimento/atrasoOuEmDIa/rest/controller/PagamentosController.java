@@ -26,20 +26,11 @@ public class PagamentosController {
         return pagamentosService.buscarPagamentos();
     }
 
-    @PostMapping(path = "/antecipado")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public PagamentoResponse cadastrarPagamento(@RequestBody PagamentoRest rest) {
         PagamentosModel model = adapter.calcularPagamento(rest);
         pagamentosService.pagamentoEmDia(model);
-        PagamentoResponse response = adapter.converterPagamento(model);
-        return response;
-    }
-
-    @PostMapping(path = "/atrasado")
-    @ResponseStatus(HttpStatus.CREATED)
-    public PagamentoResponse cadastrarPagamentoAtrasado(@RequestBody PagamentoRest rest) {
-        PagamentosModel model = adapter.calcularPagamento(rest);
-        pagamentosService.pagamentoJuros(model);
         PagamentoResponse response = adapter.converterPagamento(model);
         return response;
     }

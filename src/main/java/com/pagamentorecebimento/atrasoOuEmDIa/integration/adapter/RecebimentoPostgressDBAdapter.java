@@ -32,4 +32,8 @@ public class RecebimentoPostgressDBAdapter implements SalvarRecebimentoPort {
     public List<RecebimentoEntity> listaRecebimentos() {
         return repository.findAll();
     }
+
+    public List<RecebimentoEntity> listaPorStatus(String status) {
+        return repository.findByStatus(status);
+    }
 }

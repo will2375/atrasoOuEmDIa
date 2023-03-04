@@ -28,15 +28,10 @@ public class PagamentosService {
         }).collect(Collectors.toList());
     }
 
-    public PagamentosModel pagamentoEmDia(PagamentosModel pagamentosModel) {
-        BigDecimal resultado = PagamentosFactory.getCalculoPagamento(pagamentosModel.getStatus()).calculoPagamento(pagamentosModel.getValorAPagar(), pagamentosModel.getDiferencaValor());
-        pagamentosModel.setValorPago(resultado);
-        return pagamentoEmDia(pagamentosModel);
-    }
-
-    public PagamentosModel pagamentoJuros(PagamentosModel pagamentosModel) {
-        BigDecimal resultadoAtraso = PagamentosFactory.getCalculoPagamento(pagamentosModel.getStatus()).calculoPagamento(pagamentosModel.getValorAPagar(), pagamentosModel.getDiferencaValor());
-        pagamentosModel.setValorPago(resultadoAtraso);
-        return pagamentoJuros(pagamentosModel);
+    public PagamentosModel pagamentoEmDia(PagamentosModel model) {
+        BigDecimal resultado = PagamentosFactory.getCalculoPagamento(model.getStatus()).calculoPagamento(model.getValorAPagar(), model.getDiferencaValor());
+        model.setValorPago(resultado);
+        adapter.salvarPagamento(model);
+        return model;
     }
 }

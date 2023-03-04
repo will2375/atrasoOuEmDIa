@@ -1,6 +1,5 @@
-package com.pagamentorecebimento.atrasoOuEmDIa.integration.controller;
+package com.pagamentorecebimento.atrasoOuEmDIa.rest.controller;
 
-import com.pagamentorecebimento.atrasoOuEmDIa.domain.model.RecebimentosModel;
 import com.pagamentorecebimento.atrasoOuEmDIa.domain.service.RecebimentosService;
 import com.pagamentorecebimento.atrasoOuEmDIa.rest.adapter.RecebimentoAdapter;
 import com.pagamentorecebimento.atrasoOuEmDIa.rest.model.entrada.RecebimentoRest;

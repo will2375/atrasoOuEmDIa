@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -27,6 +26,8 @@ public class PagamentoEntity {
     private BigDecimal valorAPagar;
     @Column(length = 10, nullable = false)
     private BigDecimal diferencaValor;
+
+
     @Column(length = 10, nullable = false)
     private BigDecimal valorPago;
 }

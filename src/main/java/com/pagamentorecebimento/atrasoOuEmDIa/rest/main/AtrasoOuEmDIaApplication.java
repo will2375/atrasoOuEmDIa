@@ -1,4 +1,4 @@
-package com.pagamentorecebimento.atrasoOuEmDIa.integration.main;
+package com.pagamentorecebimento.atrasoOuEmDIa.rest.main;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

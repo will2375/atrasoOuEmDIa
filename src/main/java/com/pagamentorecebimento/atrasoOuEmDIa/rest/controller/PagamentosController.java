@@ -1,4 +1,4 @@
-package com.pagamentorecebimento.atrasoOuEmDIa.integration.controller;
+package com.pagamentorecebimento.atrasoOuEmDIa.rest.controller;
 
 
 import com.pagamentorecebimento.atrasoOuEmDIa.domain.service.PagamentosService;
@@ -7,9 +7,7 @@ import com.pagamentorecebimento.atrasoOuEmDIa.rest.model.entrada.PagamentoRest;
 import com.pagamentorecebimento.atrasoOuEmDIa.rest.model.response.PagamentoResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

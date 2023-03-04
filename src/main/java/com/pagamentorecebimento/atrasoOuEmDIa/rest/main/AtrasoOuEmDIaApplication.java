@@ -7,9 +7,9 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-@EnableJpaRepositories(basePackages = "com.pagamentorecebimento.atrasoOuEmDIa.integration.repository")
-@EntityScan(basePackages = "com.pagamentorecebimento.atrasoOuEmDIa.integration.entity")
-@ComponentScan(basePackages="com.pagamentorecebimento.atrasoOuEmDIa.integration.controller")
+@EnableJpaRepositories(basePackages = "com.pagamentorecebimento")
+@EntityScan(basePackages = "com.pagamentorecebimento")
+@ComponentScan(basePackages="com.pagamentorecebimento")
 public class AtrasoOuEmDIaApplication {
 
 	public static void main(String[] args) {

@@ -2,9 +2,8 @@ package com.pagamentorecebimento.atrasoOuEmDIa.rest.port;
 
 
 import com.pagamentorecebimento.atrasoOuEmDIa.domain.model.PagamentosModel;
-import org.springframework.stereotype.Component;
+import com.pagamentorecebimento.atrasoOuEmDIa.rest.model.response.PagamentoResponse;
 
-@Component
 public interface PagamentoPort {
-    void converterPagamento(PagamentosModel model);
+     PagamentoResponse converterPagamento(PagamentosModel model);
 }

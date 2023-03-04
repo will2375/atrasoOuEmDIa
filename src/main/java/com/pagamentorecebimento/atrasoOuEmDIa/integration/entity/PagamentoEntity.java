@@ -24,10 +24,9 @@ public class PagamentoEntity {
     private String status;
     @Column(length = 10, nullable = false)
     private BigDecimal valorAPagar;
-    @Column(length = 10, nullable = false)
+    @Column(length = 10)
     private BigDecimal diferencaValor;
 
-
-    @Column(length = 10, nullable = false)
+    @Column(length = 10)
     private BigDecimal valorPago;
 }

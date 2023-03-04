@@ -10,12 +10,16 @@ import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor
 @Component
-public class RecebimentoAdapter {
-    final RecebimentoPort port;
+public class RecebimentoAdapter implements RecebimentoPort{
 
+    @Override
     public RecebimentoResponse converterRecebimento(RecebimentoRest rest) {
-        final RecebimentosModel model = RecebimentoFactory.criar(rest);
-        port.converterRecebimento(model);
+        final RecebimentosModel model = RecebimentosModel.builder()
+                .codigo(rest.getCodigo())
+                .status(rest.getStatus())
+                .diferencaValor(rest.getDiferencaValor())
+                .valorAReceber(rest.getValorAReceber())
+                .valorRecebido(rest.getValorRecebido()).build();
         return RecebimentoResponse.builder()
                 .codigo(model.getCodigo())
                 .status(model.getStatus())

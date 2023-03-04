@@ -1,6 +1,7 @@
 package com.pagamentorecebimento.atrasoOuEmDIa.rest.controller;
 
 
+import com.pagamentorecebimento.atrasoOuEmDIa.domain.model.PagamentosModel;
 import com.pagamentorecebimento.atrasoOuEmDIa.domain.service.PagamentosService;
 import com.pagamentorecebimento.atrasoOuEmDIa.rest.adapter.PagamentoAdapter;
 import com.pagamentorecebimento.atrasoOuEmDIa.rest.model.entrada.PagamentoRest;
@@ -17,8 +18,7 @@ import java.util.List;
 @RequestMapping("/pagamentos")
 public class PagamentosController {
 
-    @Autowired
-    private PagamentosService pagamentosService;
+    final PagamentosService pagamentosService;
     final PagamentoAdapter adapter;
 
     @GetMapping
@@ -29,14 +29,18 @@ public class PagamentosController {
     @PostMapping(path = "/antecipado")
     @ResponseStatus(HttpStatus.CREATED)
     public PagamentoResponse cadastrarPagamento(@RequestBody PagamentoRest rest) {
-        PagamentoResponse response = adapter.converterPagamento(rest);
+        PagamentosModel model = adapter.calcularPagamento(rest);
+        pagamentosService.pagamentoEmDia(model);
+        PagamentoResponse response = adapter.converterPagamento(model);
         return response;
     }
 
     @PostMapping(path = "/atrasado")
     @ResponseStatus(HttpStatus.CREATED)
     public PagamentoResponse cadastrarPagamentoAtrasado(@RequestBody PagamentoRest rest) {
-        PagamentoResponse response = adapter.converterPagamento(rest);
+        PagamentosModel model = adapter.calcularPagamento(rest);
+        pagamentosService.pagamentoJuros(model);
+        PagamentoResponse response = adapter.converterPagamento(model);
         return response;
     }
 }

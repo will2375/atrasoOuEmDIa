@@ -3,8 +3,10 @@ package com.pagamentorecebimento.atrasoOuEmDIa.domain.service;
 
 import com.pagamentorecebimento.atrasoOuEmDIa.domain.formaspagamento.PagamentosStatus;
 import com.pagamentorecebimento.atrasoOuEmDIa.domain.model.PagamentosModel;
+import com.pagamentorecebimento.atrasoOuEmDIa.domain.ports.PagamentoPort;
 import com.pagamentorecebimento.atrasoOuEmDIa.integration.adapter.PagamentoPostegressDBAdapter;
 import com.pagamentorecebimento.atrasoOuEmDIa.integration.entity.PagamentoEntity;
+import com.pagamentorecebimento.atrasoOuEmDIa.rest.model.entrada.PagamentoRest;
 import com.pagamentorecebimento.atrasoOuEmDIa.rest.model.response.PagamentoResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,10 +17,11 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class PagamentosService {
+public class PagamentosService implements PagamentoPort{
 
     final PagamentoPostegressDBAdapter adapter;
 
+    @Override
     public List<PagamentoResponse> buscarPagamentos() {
         List<PagamentoEntity> listaPagamentos = adapter.listaPagamentos();
         return listaPagamentos.stream().map(entity ->{
@@ -28,6 +31,7 @@ public class PagamentosService {
         }).collect(Collectors.toList());
     }
 
+    @Override
     public PagamentosModel pagamentoEmDia(PagamentosModel model) {
         BigDecimal resultado = PagamentosStatus.getCalculoPagamento(model.getStatus()).calculoPagamento(model.getValorAPagar(), model.getDiferencaValor());
         model.setValorPago(resultado);

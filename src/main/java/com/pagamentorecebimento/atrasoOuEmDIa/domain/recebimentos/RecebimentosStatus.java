@@ -1,6 +1,6 @@
 package com.pagamentorecebimento.atrasoOuEmDIa.domain.recebimentos;
 
-public class RecebimentosFactory {
+public class RecebimentosStatus {
     public static Recebimentos getCalculoRecebimento(String statusRecebimento) {
         if (statusRecebimento.equalsIgnoreCase("cartao_credito")) {
             return new Credito();

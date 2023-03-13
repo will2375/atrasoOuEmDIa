@@ -1,6 +1,6 @@
 package com.pagamentorecebimento.atrasoOuEmDIa.domain.formaspagamento;
 
-public class PagamentosFactory {
+public class PagamentosStatus {
 
 public static Pagamentos getCalculoPagamento(String statusPagamento) {
     if(statusPagamento.equalsIgnoreCase("pagamento_em_dia")) {

@@ -1,7 +1,7 @@
 package com.pagamentorecebimento.atrasoOuEmDIa.domain.service;
 
 
-import com.pagamentorecebimento.atrasoOuEmDIa.domain.formaspagamento.PagamentosFactory;
+import com.pagamentorecebimento.atrasoOuEmDIa.domain.formaspagamento.PagamentosStatus;
 import com.pagamentorecebimento.atrasoOuEmDIa.domain.model.PagamentosModel;
 import com.pagamentorecebimento.atrasoOuEmDIa.integration.adapter.PagamentoPostegressDBAdapter;
 import com.pagamentorecebimento.atrasoOuEmDIa.integration.entity.PagamentoEntity;
@@ -29,7 +29,7 @@ public class PagamentosService {
     }
 
     public PagamentosModel pagamentoEmDia(PagamentosModel model) {
-        BigDecimal resultado = PagamentosFactory.getCalculoPagamento(model.getStatus()).calculoPagamento(model.getValorAPagar(), model.getDiferencaValor());
+        BigDecimal resultado = PagamentosStatus.getCalculoPagamento(model.getStatus()).calculoPagamento(model.getValorAPagar(), model.getDiferencaValor());
         model.setValorPago(resultado);
         adapter.salvarPagamento(model);
         return model;

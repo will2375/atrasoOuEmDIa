@@ -7,7 +7,6 @@ import com.pagamentorecebimento.atrasoOuEmDIa.rest.adapter.PagamentoAdapter;
 import com.pagamentorecebimento.atrasoOuEmDIa.rest.model.entrada.PagamentoRest;
 import com.pagamentorecebimento.atrasoOuEmDIa.rest.model.response.PagamentoResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,9 +28,9 @@ public class PagamentosController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public PagamentoResponse cadastrarPagamento(@RequestBody PagamentoRest rest) {
-        PagamentosModel model = adapter.calcularPagamento(rest);
+        PagamentosModel model = adapter.converterPagamento(rest);
         pagamentosService.pagamentoEmDia(model);
-        PagamentoResponse response = adapter.converterPagamento(model);
+        PagamentoResponse response = adapter.response(model);
         return response;
     }
 }

@@ -21,12 +21,12 @@ public class RecebimentoController {
 
     @GetMapping
     public List<RecebimentoResponse> buscarRecebimentos() {
-        return recebimentosService.listaRecebimento();
+        return recebimentosService.listaRecebimentos();
     }
 
     @GetMapping(path = "/forma/{status}")
     public List<RecebimentoResponse> findBystatusRecebimento(@PathVariable String status) {
-        return recebimentosService.findyRecebimentos(status);
+        return recebimentosService.buscarRecebimentos(status);
     }
 
     @PostMapping
@@ -34,7 +34,7 @@ public class RecebimentoController {
     public RecebimentoResponse cadastrarRecebimentoDinheiro(@RequestBody RecebimentoRest rest) {
         RecebimentosModel model = adapter.calcularRecebimento(rest);
         recebimentosService.cadastrarRecebimento(model);
-        RecebimentoResponse response = adapter.converterRecebimento(model);
+        RecebimentoResponse response = adapter.response(model);
         return response;
     }
 }

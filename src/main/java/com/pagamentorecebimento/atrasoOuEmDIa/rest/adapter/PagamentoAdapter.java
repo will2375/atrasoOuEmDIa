@@ -2,24 +2,19 @@ package com.pagamentorecebimento.atrasoOuEmDIa.rest.adapter;
 
 
 import com.pagamentorecebimento.atrasoOuEmDIa.domain.model.PagamentosModel;
-import com.pagamentorecebimento.atrasoOuEmDIa.domain.service.PagamentosService;
 import com.pagamentorecebimento.atrasoOuEmDIa.rest.factory.PagamentoFactory;
 import com.pagamentorecebimento.atrasoOuEmDIa.rest.model.entrada.PagamentoRest;
-import com.pagamentorecebimento.atrasoOuEmDIa.domain.ports.PagamentoPort;
 import com.pagamentorecebimento.atrasoOuEmDIa.rest.model.response.PagamentoResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor
 @Component
-public class PagamentoAdapter implements PagamentoPort {
+public class PagamentoAdapter {
 
-    PagamentosService service;
 
-    @Override
     public PagamentosModel converterPagamento(PagamentoRest rest) {
         final PagamentosModel model = PagamentoFactory.criar(rest);
-        service.pagamentoEmDia(model);
         return model;
     }
 

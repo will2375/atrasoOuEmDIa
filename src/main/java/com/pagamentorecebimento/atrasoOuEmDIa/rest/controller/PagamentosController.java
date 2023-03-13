@@ -29,7 +29,6 @@ public class PagamentosController {
     @ResponseStatus(HttpStatus.CREATED)
     public PagamentoResponse cadastrarPagamento(@RequestBody PagamentoRest rest) {
         PagamentosModel model = adapter.converterPagamento(rest);
-        pagamentosService.pagamentoEmDia(model);
         PagamentoResponse response = adapter.response(model);
         return response;
     }
